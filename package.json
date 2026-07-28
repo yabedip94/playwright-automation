@@ -1,0 +1,26 @@
+{
+  "name": "qa-automation-framework",
+  "version": "1.0.0",
+  "description": "A scalable QA Automation Framework built with Playwright and TypeScript, following industry best practices for UI and API testing.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yabedip94/qa-automation-framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yabedip94/qa-automation-framework/issues"
+  },
+  "homepage": "https://github.com/yabedip94/qa-automation-framework#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.0",
+    "@types/node": "^26.1.2"
+  }
+}
