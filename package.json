@@ -21,6 +21,7 @@
   "homepage": "https://github.com/yabedip94/qa-automation-framework#readme",
   "devDependencies": {
     "@playwright/test": "^1.62.0",
-    "@types/node": "^26.1.2"
+    "@types/node": "^26.1.2",
+    "allure-playwright": "^3.10.2"
   }
 }
