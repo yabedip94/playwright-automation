@@ -4,7 +4,7 @@ import { InventoryPage } from '../../../src/pages/InventoryPage';
 import { CartPage } from '../../../src/pages/CartPage';
 import { CheckoutPage } from '../../../src/pages/CheckoutPage';
 import { CheckoutStepTwoPage } from '../../../src/pages/CheckoutStepTwoPage';
-import { USERS } from '../../../src/data/users';
+import { USERS } from '../../../src/data/saucedemo/users';
 
 test('Verify price total on checkout step two', async ({ page }) => {
     const loginPage = new LoginPage(page);

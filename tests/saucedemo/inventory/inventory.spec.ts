@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../../src/pages/LoginPage';
 import { InventoryPage } from '../../../src/pages/InventoryPage';
-import { USERS } from '../../../src/data/users';
+import { USERS } from '../../../src/data/saucedemo/users';
 
 test('Add Sauce Labs Bike Light to cart', async ({ page }) => {
 
