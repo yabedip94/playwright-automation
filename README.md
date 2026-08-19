@@ -11,6 +11,7 @@ This project demonstrates UI automation testing using the **Page Object Model (P
 - Playwright
 - TypeScript
 - Node.js
+- GitHub Actions
 - Page Object Model (POM)
 
 ---
@@ -20,19 +21,32 @@ This project demonstrates UI automation testing using the **Page Object Model (P
 ```text
 playwright-automation
 │
+├── .github
+│   └── workflows
+│       └── playwright.yml
+│
 ├── src
+│   ├── constants
+│   │
 │   ├── data
 │   │   └── users.ts
 │   │
-│   └── pages
-│       ├── LoginPage.ts
-│       ├── InventoryPage.ts
-│       ├── CartPage.ts
-│       ├── CheckoutPage.ts
-│       └── CheckoutStepTwoPage.ts
+│   ├── fixtures
+│   │
+│   ├── helpers
+│   │
+│   ├── pages
+│   │   ├── LoginPage.ts
+│   │   ├── InventoryPage.ts
+│   │   ├── CartPage.ts
+│   │   ├── CheckoutPage.ts
+│   │   └── CheckoutStepTwoPage.ts
+│   │
+│   └── utils
 │
 ├── tests
 │   └── saucedemo
+│       │
 │       ├── authentication
 │       │   ├── successful-login.spec.ts
 │       │   ├── invalid-login.spec.ts
@@ -40,16 +54,18 @@ playwright-automation
 │       │   ├── empty-password.spec.ts
 │       │   └── locked-user.spec.ts
 │       │
-│       ├── inventory
-│       │   └── inventory.spec.ts
-│       │
 │       ├── cart
 │       │   └── cart.spec.ts
 │       │
-│       └── checkout
-│           ├── checkout.spec.ts
-│           └── checkoutsteptwo.spec.ts
+│       ├── checkout
+│       │   ├── checkout.spec.ts
+│       │   └── checkoutsteptwo.spec.ts
+│       │
+│       └── inventory
+│           └── inventory.spec.ts
 │
+├── .gitignore
 ├── playwright.config.ts
 ├── package.json
+├── package-lock.json
 └── README.md

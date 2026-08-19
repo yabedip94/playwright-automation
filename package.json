@@ -9,16 +9,16 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yabedip94/qa-automation-framework.git"
+    "url": "git+https://github.com/yabedip94/playwright-automation.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/yabedip94/qa-automation-framework/issues"
+    "url": "https://github.com/yabedip94/playwright-automation/issues"
   },
-  "homepage": "https://github.com/yabedip94/qa-automation-framework#readme",
+  "homepage": "https://github.com/yabedip94/playwright-automation#readme",
   "devDependencies": {
     "@playwright/test": "^1.62.0",
     "@types/node": "^26.1.2",
