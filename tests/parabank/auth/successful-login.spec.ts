@@ -5,7 +5,7 @@ import { USERS } from '../../../src/data/parabank/users';
 test('Successful Login', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-    await page.goto('https://parabank.parasoft.com/parabank/index.htm');
+    await page.goto('/');
 
     await loginPage.login(
         USERS.validUser.username,

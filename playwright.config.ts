@@ -38,7 +38,8 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'saucedemo',
+      testMatch: /.*saucedemo\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'https://www.saucedemo.com',
@@ -47,6 +48,19 @@ export default defineConfig({
         video: 'retain-on-failure',
       },
     },
+
+    {
+      name: 'parabank',
+      testMatch: /.*parabank\/.*\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://parabank.parasoft.com/parabank',
+        trace: 'retain-on-failure',
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+      },
+    },
+
 
     /* {
       name: 'firefox',
