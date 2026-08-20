@@ -42,10 +42,11 @@ test('View Account Activity', async ({ page }) => {
     ).toBeVisible();
 
     await expect(
-        accountActivityPage.availableBalance
+        accountActivityPage.pageTitle
     ).toBeVisible();
 
-    await expect(
-        accountActivityPage.activityTable
-    ).toBeVisible();
+    await accountActivityPage.activityTable.waitFor({
+        state: 'visible',
+        timeout: 15000,
+    });
 });

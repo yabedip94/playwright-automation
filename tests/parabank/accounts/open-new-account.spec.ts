@@ -2,20 +2,15 @@ import { test, expect } from '@playwright/test';
 
 import {
     createUser,
-    loginAsUser,
 } from '../../../src/helpers/parabankAuth';
 
 import { OpenNewAccountPage } from '../../../src/pages/parabank/OpenNewAccountPage';
 
 test.describe('ParaBank - Open New Account', () => {
-    test('User can open a new savings account', async ({ page }) => {
-        const user = await createUser(page);
 
-        await loginAsUser(
-            page,
-            user.username,
-            user.password
-        );
+    test('User can open a new savings account', async ({ page }) => {
+
+        await createUser(page);
 
         const openNewAccountPage = new OpenNewAccountPage(page);
 
@@ -50,5 +45,7 @@ test.describe('ParaBank - Open New Account', () => {
         await expect(
             openNewAccountPage.newAccountId
         ).not.toHaveText('');
+
     });
+
 });

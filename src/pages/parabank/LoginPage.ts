@@ -18,7 +18,11 @@ export class LoginPage {
 
     async goto() {
         await this.page.goto(
-            'https://parabank.parasoft.com/parabank/index.htm'
+            'https://parabank.parasoft.com/parabank/index.htm',
+            {
+                waitUntil: 'domcontentloaded',
+                timeout: 60000,
+            }
         );
     }
 

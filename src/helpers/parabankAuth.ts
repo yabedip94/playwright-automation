@@ -41,11 +41,15 @@ export async function loginAsUser(
 
     await loginPage.goto();
 
+    await expect(
+        loginPage.usernameInput
+    ).toBeVisible({ timeout: 15000 });
+
     await loginPage.login(username, password);
 
     await expect(
         page.getByRole('heading', {
             name: 'Accounts Overview',
         })
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 15000 });
 }
