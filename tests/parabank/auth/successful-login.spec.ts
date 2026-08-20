@@ -1,18 +1,25 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../src/pages/parabank/LoginPage';
-import { USERS } from '../../../src/data/parabank/users';
+
+import {
+    createUser,
+    logoutUser,
+    loginAsUser,
+} from '../../../src/helpers/parabankAuth';
 
 test('Successful Login', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+    const user = await createUser(page);
 
-    await loginPage.goto();
+    await logoutUser(page);
 
-    await loginPage.login(
-        USERS.validUser.username,
-        USERS.validUser.password
+    await loginAsUser(
+        page,
+        user.username,
+        user.password
     );
 
     await expect(
-        page.getByRole('heading', { name: 'Accounts Overview' })
+        page.getByRole('heading', {
+            name: 'Accounts Overview',
+        })
     ).toBeVisible();
 });

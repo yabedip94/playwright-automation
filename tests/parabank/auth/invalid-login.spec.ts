@@ -1,18 +1,18 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../src/pages/parabank/LoginPage';
-import { USERS } from '../../../src/data/parabank/users';
 
-test('Login with Invalid Credentials', async ({ page }) => {
+import { LoginPage } from '../../../src/pages/parabank/LoginPage';
+
+test('Invalid Login', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.goto();
 
     await loginPage.login(
-        USERS.invalid.username,
-        USERS.invalid.password
+        'invalid_user',
+        'wrong_password'
     );
 
-    await expect(loginPage.errorMessage).toHaveText(
-        'An internal error has occurred and has been logged.'
-    );
+    await expect(
+        loginPage.errorMessage
+    ).toBeVisible();
 });

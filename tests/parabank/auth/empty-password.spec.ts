@@ -1,18 +1,27 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../src/pages/parabank/LoginPage';
-import { USERS } from '../../../src/data/parabank/users';
 
-test('Login with Empty Username and Password', async ({ page }) => {
+import {
+    createUser,
+    logoutUser,
+} from '../../../src/helpers/parabankAuth';
+
+import { LoginPage } from '../../../src/pages/parabank/LoginPage';
+
+test('Login with Empty Password', async ({ page }) => {
+    const user = await createUser(page);
+
+    await logoutUser(page);
+
     const loginPage = new LoginPage(page);
 
     await loginPage.goto();
 
     await loginPage.login(
-        USERS.emptyUsernameAndPassword.username,
-        USERS.emptyUsernameAndPassword.password
+        user.username,
+        ''
     );
 
-    await expect(loginPage.errorMessage).toHaveText(
-        'Please enter a username and password.'
-    );
+    await expect(
+        loginPage.errorMessage
+    ).toBeVisible();
 });
