@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../src/pages/LoginPage';
-import { InventoryPage } from '../../../src/pages/InventoryPage';
-import { CartPage } from '../../../src/pages/CartPage';
-import { CheckoutPage } from '../../../src/pages/CheckoutPage';
+import { LoginPage } from '../../../src/pages/saucedemo/LoginPage';
+import { InventoryPage } from '../../../src/pages/saucedemo/InventoryPage';
+import { CartPage } from '../../../src/pages/saucedemo/CartPage';
+import { CheckoutPage } from '../../../src/pages/saucedemo/CheckoutPage';
 import { USERS } from '../../../src/data/saucedemo/users';
 
 test('Successful checkout with Sauce Labs Bike Light', async ({ page }) => {

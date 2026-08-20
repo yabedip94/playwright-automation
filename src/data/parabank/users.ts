@@ -1,7 +1,9 @@
+const username = `bediqa${Date.now()}`;
+
 export const USERS = {
     validUser: {
-        username: 'bediqa20260819',
-        password: 'Password123',
+        username: username,
+        password: 'Password123!',
     },
 
     invalid: {
@@ -11,11 +13,11 @@ export const USERS = {
 
     emptyUsername: {
         username: '',
-        password: 'Password123',
+        password: 'Password123!',
     },
 
     emptyPassword: {
-        username: 'bediqa20260819',
+        username: username,
         password: '',
     },
 

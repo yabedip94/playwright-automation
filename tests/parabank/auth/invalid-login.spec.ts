@@ -5,7 +5,7 @@ import { USERS } from '../../../src/data/parabank/users';
 test('Login with Invalid Credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-    await page.goto('/');
+    await loginPage.goto();
 
     await loginPage.login(
         USERS.invalid.username,

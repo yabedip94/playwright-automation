@@ -1,8 +1,8 @@
 
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../src/pages/LoginPage';
-import { InventoryPage } from '../../../src/pages/InventoryPage';
-import { CartPage } from '../../../src/pages/CartPage';
+import { LoginPage } from '../../../src/pages/saucedemo/LoginPage';
+import { InventoryPage } from '../../../src/pages/saucedemo/InventoryPage';
+import { CartPage } from '../../../src/pages/saucedemo/CartPage';
 import { USERS } from '../../../src/data/saucedemo/users';
 
 test('Add Sauce Labs Bike Light to cart', async ({ page }) => {

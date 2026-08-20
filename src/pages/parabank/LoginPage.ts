@@ -16,6 +16,12 @@ export class LoginPage {
         this.errorMessage = page.locator('p.error');
     }
 
+    async goto() {
+        await this.page.goto(
+            'https://parabank.parasoft.com/parabank/index.htm'
+        );
+    }
+
     async login(username: string, password: string) {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
@@ -25,5 +31,4 @@ export class LoginPage {
     async getErrorMessage() {
         return await this.errorMessage.textContent();
     }
-
 }

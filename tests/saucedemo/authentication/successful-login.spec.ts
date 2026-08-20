@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../src/pages/LoginPage';
+import { LoginPage } from '../../../src/pages/saucedemo/LoginPage';
 import { USERS } from '../../../src/data/saucedemo/users';
 import { allure } from 'allure-playwright';
 
