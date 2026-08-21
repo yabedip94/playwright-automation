@@ -4,7 +4,7 @@ A scalable end-to-end test automation framework built with **Playwright** and **
 
 This project demonstrates UI automation testing using the **Page Object Model (POM)** design pattern across multiple web applications.
 
-The framework currently covers authentication and banking workflows using **SauceDemo** and **ParaBank**.
+The framework currently covers authentication, e-commerce, and banking workflows using **SauceDemo** and **ParaBank**.
 
 ---
 
@@ -38,18 +38,23 @@ Test coverage includes:
 - Invalid Login
 - Empty Username
 - Empty Password
+- Empty Username & Password
 - Accounts Overview
 - Account Activity
 - Open New Account
 - Transfer Funds
+- Update Profile
+- Request Loan
+- Logout
+- Full End-to-End Banking Journey
 
 ParaBank uses dynamic user generation because test users and sessions may expire.
 
 Each test can create a new user with a unique username using:
 
-```ts
+~~~ts
 const username = `bediqa${Date.now()}`;
-```
+~~~
 
 After registration, ParaBank automatically authenticates the newly created user, allowing authenticated workflows to continue within the same session.
 
@@ -57,7 +62,7 @@ After registration, ParaBank automatically authenticates the newly created user,
 
 ## 📁 Project Structure
 
-```text
+~~~text
 playwright-automation
 │
 ├── .github
@@ -81,10 +86,15 @@ playwright-automation
 │   │   ├── parabank
 │   │   │   ├── AccountActivityPage.ts
 │   │   │   ├── AccountsOverviewPage.ts
+│   │   │   ├── BillPayPage.ts
+│   │   │   ├── FindTransactionsPage.ts
 │   │   │   ├── LoginPage.ts
+│   │   │   ├── LogoutPage.ts
 │   │   │   ├── OpenNewAccountPage.ts
 │   │   │   ├── RegisterPage.ts
-│   │   │   └── TransferFundsPage.ts
+│   │   │   ├── RequestLoanPage.ts
+│   │   │   ├── TransferFundsPage.ts
+│   │   │   └── UpdateProfilePage.ts
 │   │   │
 │   │   └── saucedemo
 │   │       ├── LoginPage.ts
@@ -99,18 +109,30 @@ playwright-automation
 │   │
 │   ├── parabank
 │   │   │
-│   │   ├── auth
-│   │   │   ├── registration.spec.ts
-│   │   │   ├── successful-login.spec.ts
-│   │   │   ├── invalid-login.spec.ts
-│   │   │   ├── empty-username.spec.ts
-│   │   │   ├── empty-password.spec.ts
-│   │   │   └── empty-username-password.spec.ts
+│   │   ├── accounts
+│   │   │   ├── account-activity.spec.ts
+│   │   │   ├── accounts-overview.spec.ts
+│   │   │   ├── find-transactions.spec.ts
+│   │   │   ├── open-new-account.spec.ts
+│   │   │   ├── request-loan.spec.ts
+│   │   │   └── update-profile.spec.ts
 │   │   │
-│   │   └── accounts
-│   │       ├── accounts-overview.spec.ts
-│   │       ├── account-activity.spec.ts
-│   │       ├── open-new-account.spec.ts
+│   │   ├── auth
+│   │   │   ├── empty-password.spec.ts
+│   │   │   ├── empty-username-password.spec.ts
+│   │   │   ├── empty-username.spec.ts
+│   │   │   ├── invalid-login.spec.ts
+│   │   │   ├── logout.spec.ts
+│   │   │   ├── registration.spec.ts
+│   │   │   └── successful-login.spec.ts
+│   │   │
+│   │   ├── bill-payment
+│   │   │   └── bill-payment.spec.ts
+│   │   │
+│   │   ├── e2e
+│   │   │   └── parabank-full-journey.spec.ts
+│   │   │
+│   │   └── transfer
 │   │       └── transfer-funds.spec.ts
 │   │
 │   └── saucedemo
@@ -133,11 +155,12 @@ playwright-automation
 │           └── inventory.spec.ts
 │
 ├── .gitignore
-├── playwright.config.ts
+├── Jenkinsfile
 ├── package.json
 ├── package-lock.json
+├── playwright.config.ts
 └── README.md
-```
+~~~
 
 ---
 
@@ -147,13 +170,13 @@ ParaBank test users are generated dynamically to avoid issues with expired users
 
 The authentication helper handles user registration and provides generated credentials:
 
-```ts
+~~~ts
 const user = await createUser(page);
-```
+~~~
 
 The generated user can then be used for login scenarios:
 
-```ts
+~~~ts
 await logoutUser(page);
 
 await loginAsUser(
@@ -161,13 +184,13 @@ await loginAsUser(
     user.username,
     user.password
 );
-```
+~~~
 
 For authenticated banking workflows, registration automatically creates an active session, so the test can continue directly without logging in again.
 
 Example:
 
-```text
+~~~text
 Create Dynamic User
         ↓
 Register
@@ -179,7 +202,41 @@ Active Session
 Open Banking Feature
         ↓
 Execute Test
-```
+~~~
+
+This strategy allows ParaBank tests to remain independent and reduces dependency on static test accounts.
+
+---
+
+## 🔄 ParaBank Full End-to-End Journey
+
+The project includes a complete end-to-end banking journey that simulates a user performing multiple banking operations in a single session.
+
+The journey includes:
+
+~~~text
+Register Dynamic User
+        ↓
+Automatic Login
+        ↓
+Open New Account
+        ↓
+Update Profile
+        ↓
+Transfer Funds
+        ↓
+Request Loan
+        ↓
+Logout
+~~~
+
+The full journey is implemented in:
+
+~~~text
+tests/parabank/e2e/parabank-full-journey.spec.ts
+~~~
+
+This test validates that multiple banking features can work together as part of a complete user workflow.
 
 ---
 
@@ -187,33 +244,45 @@ Execute Test
 
 Run all tests:
 
-```bash
+~~~bash
 npx playwright test
-```
+~~~
 
 Run ParaBank tests:
 
-```bash
+~~~bash
 npx playwright test tests/parabank
-```
+~~~
 
 Run SauceDemo tests:
 
-```bash
+~~~bash
 npx playwright test tests/saucedemo
-```
+~~~
+
+Run the ParaBank full end-to-end journey:
+
+~~~bash
+npx playwright test tests/parabank/e2e/parabank-full-journey.spec.ts
+~~~
 
 Run a specific test:
 
-```bash
-npx playwright test tests/parabank/accounts/transfer-funds.spec.ts
-```
+~~~bash
+npx playwright test tests/parabank/accounts/request-loan.spec.ts
+~~~
 
 Run tests in headed mode:
 
-```bash
+~~~bash
 npx playwright test --headed
-```
+~~~
+
+Run the full ParaBank journey in headed mode:
+
+~~~bash
+npx playwright test tests/parabank/e2e/parabank-full-journey.spec.ts --headed
+~~~
 
 ---
 
@@ -221,9 +290,9 @@ npx playwright test --headed
 
 After running the tests, open the Playwright HTML report:
 
-```bash
+~~~bash
 npx playwright show-report
-```
+~~~
 
 ---
 
@@ -231,7 +300,7 @@ npx playwright show-report
 
 The project follows the **Page Object Model (POM)** architecture:
 
-```text
+~~~text
 Test Specification
         ↓
 Page Object
@@ -239,19 +308,19 @@ Page Object
 Locator & Action
         ↓
 Application Under Test
-```
+~~~
 
 Reusable authentication logic is separated into helpers:
 
-```text
+~~~text
 Test
- ↓
+  ↓
 Helper
- ↓
+  ↓
 Page Object
- ↓
+  ↓
 Application
-```
+~~~
 
 This approach improves:
 
@@ -265,9 +334,11 @@ This approach improves:
 
 ## 🔄 CI/CD
 
-The project is configured to run automated tests using **GitHub Actions**.
+The project is configured to run automated tests using **GitHub Actions** and Jenkins.
 
-The workflow can execute Playwright tests automatically after code changes are pushed to the repository.
+The automation pipeline can execute Playwright tests after code changes are pushed to the repository.
+
+Automated reporting helps provide test execution results and evidence for the test run.
 
 ---
 
@@ -283,10 +354,16 @@ The workflow can execute Playwright tests automatically after code changes are p
 | Empty Username | ✅ |
 | Empty Password | ✅ |
 | Empty Username & Password | ✅ |
+| Logout | ✅ |
 | Accounts Overview | ✅ |
 | Account Activity | ✅ |
 | Open New Account | ✅ |
+| Find Transactions | ✅ |
+| Update Profile | ✅ |
+| Bill Payment | ✅ |
 | Transfer Funds | ✅ |
+| Request Loan | ✅ |
+| Full End-to-End Journey | ✅ |
 
 ### SauceDemo
 
@@ -308,5 +385,7 @@ This project is part of a Software Quality Assurance Automation portfolio focuse
 - Page Object Model
 - Dynamic Test Data
 - Reusable Helpers
+- End-to-End Testing
 - CI/CD
+- Jenkins
 - Automated Reporting
