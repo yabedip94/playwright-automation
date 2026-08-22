@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 import {
-    createUser,
+    getTestUser,
     logoutUser,
     loginAsUser,
 } from '../../../src/helpers/parabankAuth';
 
 test('Successful Login', async ({ page }) => {
-    const user = await createUser(page);
+    const user = await getTestUser(page);
 
     await logoutUser(page);
 

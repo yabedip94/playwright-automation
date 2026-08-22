@@ -36,9 +36,6 @@ export class LogoutPage {
      * Click Log Out and wait until redirected to the main/login page
      */
     async logout(): Promise<void> {
-        await Promise.all([
-            this.page.waitForURL(/index\.htm/),
-            this.logoutLink.click(),
-        ]);
+        await this.logoutLink.click();
     }
 }

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 import {
-    createUser,
+    getTestUser,
 } from '../../../src/helpers/parabankAuth';
 
 import {
@@ -14,7 +14,7 @@ test.describe('ParaBank - Update Profile', () => {
     test('User can successfully update profile', async ({ page }) => {
 
         // Create dynamic user
-        const user = await createUser(page);
+        const user = await getTestUser(page);
 
         console.log(`Testing with user: ${user.username}`);
 

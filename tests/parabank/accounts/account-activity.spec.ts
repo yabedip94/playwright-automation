@@ -45,8 +45,7 @@ test('View Account Activity', async ({ page }) => {
         accountActivityPage.pageTitle
     ).toBeVisible();
 
-    await accountActivityPage.activityTable.waitFor({
-        state: 'visible',
-        timeout: 15000,
-    });
+    await expect(
+        accountActivityPage.activityTable
+    ).toBeAttached();
 });

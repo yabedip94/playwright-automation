@@ -92,19 +92,12 @@ export class UpdateProfilePage {
         zipCode: string,
         phoneNumber: string
     ) {
-
         await this.firstNameInput.fill(firstName);
-
         await this.lastNameInput.fill(lastName);
-
         await this.addressInput.fill(address);
-
         await this.cityInput.fill(city);
-
         await this.stateInput.fill(state);
-
         await this.zipCodeInput.fill(zipCode);
-
         await this.phoneNumberInput.fill(phoneNumber);
 
         await this.updateProfileButton.click();
