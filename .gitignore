@@ -152,3 +152,5 @@ vite.config.ts.timestamp-*
 # Allure
 allure-results/
 allure-report/
+
+.parabank-user.json
